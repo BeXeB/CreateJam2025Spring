@@ -8,7 +8,7 @@ public class Interact : MonoBehaviour
     
     private void Awake()
     {
-        playerInput = new PlayerInput();
+        playerInput = InputManager.instance.playerInput;
     }
     
     private void OnEnable()
@@ -27,7 +27,6 @@ public class Interact : MonoBehaviour
     
     private void InteractAction(InputAction.CallbackContext context)
     {
-        Debug.Log("Interact action performed");
         if (currentInteractable == null) return;
         var interactableScript = currentInteractable.GetComponent<IInteractable>();
         interactableScript?.Interact(gameObject);

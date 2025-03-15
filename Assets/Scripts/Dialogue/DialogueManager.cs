@@ -1,8 +1,6 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -17,10 +15,10 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
-        playerInput = new PlayerInput();
+        playerInput = InputManager.instance.playerInput;
         instance = this;
     }
-
+    
     public event Action<string, string> OnDialogueChanged;
     public event Action OnDialogueEnded;
     public event Action OnDialogueStarted;
@@ -46,7 +44,7 @@ public class DialogueManager : MonoBehaviour
         currentDialogue = dialogue;
         currentSentenceIndex = 0;
         OnDialogueStarted?.Invoke();
-        ChangeDialogue(dialogue.name, dialogue.sentences[0]);
+        ChangeDialogue(dialogue.sentences[0].name, dialogue.sentences[0].sentence);
     }
 
     private void AdvanceDialogue(InputAction.CallbackContext context)
@@ -59,7 +57,8 @@ public class DialogueManager : MonoBehaviour
         currentSentenceIndex++;
         if (currentSentenceIndex < currentDialogue.sentences.Length)
         {
-            ChangeDialogue(currentDialogue.name, currentDialogue.sentences[currentSentenceIndex]);
+            var currentSentence = currentDialogue.sentences[currentSentenceIndex];
+            ChangeDialogue(currentSentence.name, currentSentence.sentence);
             return;
         }
 
@@ -75,6 +74,7 @@ public class DialogueManager : MonoBehaviour
     {
         playerInput.Player.Enable();
         playerInput.Dialogue.Disable();
+        currentDialogue = null;
         OnDialogueEnded?.Invoke();
     }
 }
@@ -82,6 +82,13 @@ public class DialogueManager : MonoBehaviour
 [Serializable]
 public class Dialogue
 {
+    public DialogueData[] sentences;
+}
+
+[Serializable]
+public struct DialogueData
+{
     public string name;
-    [TextArea(3, 10)] public string[] sentences;
+    [TextArea(3, 10)]
+    public string sentence;
 }

@@ -9,11 +9,11 @@ public class DialogueUI : MonoBehaviour
     [SerializeField] private GameObject dialoguePanel;
     private DialogueManager dialogueManager;
 
-    private void Start()
+    private void Awake()
     {
         dialogueManager = DialogueManager.instance;
     }
-    
+
     private void OnEnable()
     {
         dialogueManager.OnDialogueStarted += ShowDialogue;

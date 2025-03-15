@@ -9,6 +9,7 @@ public class Inventory : MonoBehaviour
     
     public void AddItem(ItemType item)
     {
+        items.Add(item);
         OnItemAdded?.Invoke(item);
     }
     
