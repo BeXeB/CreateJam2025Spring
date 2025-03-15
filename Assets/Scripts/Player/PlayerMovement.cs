@@ -1,5 +1,7 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -19,10 +21,13 @@ public class PlayerMovement : MonoBehaviour
     {
         playerInput.Enable();
         playerInput.Player.LeaveChair.performed += GetOutOfChair;
+        playerInput.Player.Reload.performed += ReloadScene;
     }
 
     private void OnDisable()
     {
+        playerInput.Player.Reload.performed += ReloadScene;
+        playerInput.Player.LeaveChair.performed -= GetOutOfChair;
         playerInput.Disable();
     }
     
@@ -47,5 +52,18 @@ public class PlayerMovement : MonoBehaviour
         inWheelchair = false;
         wheelchair.transform.SetParent(null);
         wheelchair = null;
+    }
+    
+    private void ReloadScene(InputAction.CallbackContext obj)
+    {
+        GameManager.instance.Reload();
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("End"))
+        {
+            GameManager.instance.LoadNext();
+        }
     }
 }

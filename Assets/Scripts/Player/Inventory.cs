@@ -22,6 +22,11 @@ public class Inventory : MonoBehaviour
     {
         items.Remove(item);
     }
+
+    public void SetInventory(List<ItemType> newInv)
+    {
+        items = newInv;
+    }
 }
 
 public enum ItemType
