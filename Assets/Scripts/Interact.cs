@@ -27,6 +27,8 @@ public class Interact : MonoBehaviour
     
     private void InteractAction(InputAction.CallbackContext context)
     {
+        Debug.Log("Interact action performed");
+        if (currentInteractable == null) return;
         var interactableScript = currentInteractable.GetComponent<IInteractable>();
         interactableScript?.Interact(gameObject);
     }
