@@ -1880,12 +1880,12 @@ MonoBehaviour:
   startDialogue:
     sentences:
     - name: 
-      sentence: This is your stop, time to get off the Train
+      sentence: This is your stop, time to get off the train!
   doorCloseDialogue:
     sentences:
     - name: 
-      sentence: As you placed down your Plank the door closed, thus missing your
-        stop and losing your Plank
+      sentence: As you placed down your plank the door suddenly closed. You are stuck
+        on the train!
   plankSpots:
   - {fileID: 311419243}
   - {fileID: 1046342241}

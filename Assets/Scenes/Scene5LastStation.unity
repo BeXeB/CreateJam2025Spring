@@ -6852,7 +6852,7 @@ MonoBehaviour:
     - name: Attendant
       sentence: Sorry mate, that was the last train
     - name: 
-      sentence: You have to get home an other way
+      sentence: You have to get home some other way
 --- !u!1 &1078824321 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2731408010913427014, guid: 4c9da6a2e25315340a8ff0792385beb2, type: 3}

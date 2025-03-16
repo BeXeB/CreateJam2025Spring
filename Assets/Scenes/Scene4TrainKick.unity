@@ -2845,7 +2845,7 @@ MonoBehaviour:
       sentence: Since you lost your ramp, you were unable to get of the train by
         yourself, and no one helped you
     - name: Inspector
-      sentence: This is the last stop, you have to get of the train
+      sentence: This is the last stop, you have to get off the train
     - name: Skipper
       sentence: ...
     - name: Inspector
