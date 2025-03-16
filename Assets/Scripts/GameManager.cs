@@ -1,6 +1,3 @@
-using System;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -76,6 +73,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        player.SetActive(false);
         dedMenu.GameOver();
     }
 
@@ -88,17 +86,29 @@ public class GameManager : MonoBehaviour
     {
         player.GetComponent<Inventory>().SetInventory(new());
         var pm = player.GetComponent<PlayerMovement>();
-        if (!pm.inWheelchair)
+        if (SceneManager.GetActiveScene().buildIndex != 2)
         {
-            var wheelChair = GameObject.Find("Wheelchair");
-            wheelChair.GetComponent<Wheelchair>().Interact(player);
+            if (!pm.inWheelchair)
+            {
+                var wheelChair = GameObject.Find("Wheelchair");
+                wheelChair.GetComponent<Wheelchair>().Interact(player);
+            }
         }
+        else
+        {
+            if (pm.inWheelchair)
+            {
+                pm.GetOutOfChairImplementation();
+                Destroy(GameObject.Find("Wheelchair"));
+            }
+        }
+        
+        player.SetActive(true);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void Menu()
     {
-        Destroy(player);
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(0, LoadSceneMode.Single);
     }
 }

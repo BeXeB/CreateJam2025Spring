@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -45,6 +44,11 @@ public class PlayerMovement : MonoBehaviour
     
     private void GetOutOfChair(InputAction.CallbackContext obj)
     {
+        GetOutOfChairImplementation();
+    }
+
+    public void GetOutOfChairImplementation()
+    {
         if (!inWheelchair)
         {
             return;
@@ -64,6 +68,14 @@ public class PlayerMovement : MonoBehaviour
         if (other.CompareTag("End"))
         {
             GameManager.instance.LoadNext();
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.collider.CompareTag("Car"))
+        {
+            GameManager.instance.GameOver();
         }
     }
 }
