@@ -6,17 +6,29 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/SetupScene.unity
+    guid: fc9eb3bedf07a8f44b53efe4938b025d
+  - enabled: 1
     path: Assets/Scenes/Main Menu.unity
     guid: a78530e48b66228428658808a9763d1a
   - enabled: 1
-    path: Assets/Scenes/Player.unity
-    guid: fc9eb3bedf07a8f44b53efe4938b025d
+    path: Assets/Scenes/Scene1Hospital.unity
+    guid: 7e50a0f71d3ab476e9f5567ac7c01a27
   - enabled: 1
-    path: Assets/Scenes/BenceTestScene.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
+    path: Assets/Scenes/Scene2OutsideOfHospital 1.unity
+    guid: f616b82fca3214ec19ba0b1f04ec406d
   - enabled: 1
-    path: Assets/Scenes/Level1.unity
-    guid: f9103368c0fdd4245a8ecf4a1453757d
+    path: Assets/Scenes/Scene3TrainMiss.unity
+    guid: 3127642425a294372987bd47ed977086
+  - enabled: 1
+    path: Assets/Scenes/Scene4TrainKick.unity
+    guid: 9e1a11035dbaa497f99b70377c84875c
+  - enabled: 1
+    path: Assets/Scenes/Scene5LastStation.unity
+    guid: 043211d91cee04910b3df3ced2eed5d1
+  - enabled: 1
+    path: Assets/Scenes/Scene6BigStreet.unity
+    guid: 861089af9359a464e86578a83d55daac
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

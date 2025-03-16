@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3361172030868443201}
   - component: {fileID: 5205002985607068574}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Gfx
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 6628860184322075750}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0.0445635}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 0.39012, y: 0.39012, z: 0.39012}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 4959738027719054170}
   - component: {fileID: 8386813213472087083}
   - component: {fileID: 575149559771201876}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Car
   m_TagString: Car
   m_Icon: {fileID: 0}
@@ -114,7 +114,7 @@ Transform:
   m_GameObject: {fileID: 8901100894397921666}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.328108, y: -4.980555, z: -0.0445635}
+  m_LocalPosition: {x: -2.328108, y: -4.980555, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -137,6 +137,7 @@ MonoBehaviour:
   timeAtStop: 0
   path: []
   looping: 0
+  destroyAtEnd: 1
 --- !u!61 &575149559771201876
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -181,5 +182,5 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 6, y: 2}
+  m_Size: {x: 2, y: 6}
   m_EdgeRadius: 0

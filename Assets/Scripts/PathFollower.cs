@@ -10,10 +10,12 @@ public class PathFollower : MonoBehaviour
     public bool looping = false;
     private int currentGoalIndex = 0;
     private float cooldown = 0;
+    public bool destroyAtEnd = true;
+    private bool reachedEnd = false;
 
     private void FixedUpdate()
     {
-        if (cooldown > 0) return;
+        if (cooldown > 0 || reachedEnd) return;
         var goal = path[currentGoalIndex].position;
         var direction = (goal - transform.position).normalized;
         transform.up = direction;
@@ -38,9 +40,10 @@ public class PathFollower : MonoBehaviour
         {
             currentGoalIndex = 0;
         }
-        else
+        else if (destroyAtEnd)
         {
             Destroy(gameObject);
         }
+        reachedEnd = true;
     }
 }

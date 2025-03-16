@@ -127,9 +127,18 @@ public class PlayerMovement : MonoBehaviour
 
         transform.position = wheelchair.ejectPos.position;
         SetInWheelChair(false);
+        wheelchair.GetComponent<BoxCollider2D>().enabled = true;
         wheelchair.transform.SetParent(null);
         wheelchair = null;
     }
+
+    public void GetOutOfChairImplementationWithDelete()
+    {
+        var go = wheelchair.gameObject;
+        GetOutOfChairImplementation();
+        Destroy(go);
+    }
+    
     private void ReloadScene(InputAction.CallbackContext obj)
     {
         GameManager.instance.Reload();
@@ -140,6 +149,11 @@ public class PlayerMovement : MonoBehaviour
         if (other.CompareTag("End"))
         {
             GameManager.instance.LoadNext();
+        }
+
+        if (other.CompareTag("DialogueTrigger"))
+        {
+            other.GetComponent<DialogueTrigger>().PlayDialogue();
         }
     }
 

@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour
                 {
                     new ()
                     {
-                        name = "$*#!@%$!",
+                        name = "System",
                         sentence = "Please come back with your wheelchair"
                     }
                 }
@@ -109,6 +109,6 @@ public class GameManager : MonoBehaviour
 
     public void Menu()
     {
-        SceneManager.LoadScene(0, LoadSceneMode.Single);
+        SceneManager.LoadScene(1);
     }
 }

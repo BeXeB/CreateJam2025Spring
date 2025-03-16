@@ -11,9 +11,19 @@ public class EndTrigger : MonoBehaviour
             {
                 new DialogueData
                 {
-                    name = "Bela",
-                    sentence = "You be evicted!"
-                }
+                    name = "",
+                    sentence = "You try to enter your home, the key doesnt work"
+                },
+                new DialogueData
+                {
+                    name = "",
+                    sentence = "You try again and again to no avail"
+                },
+                new DialogueData
+                {
+                    name = "Landlord",
+                    sentence = "Sorry lad, I had to change the locks, you haven't paid this month's rent"
+                },
             }
         });
         DialogueManager.instance.OnDialogueEnded += OnDialogueEnded;

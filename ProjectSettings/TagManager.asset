@@ -8,14 +8,15 @@ TagManager:
   - Start
   - End
   - Car
+  - DialogueTrigger
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Invis wall
   - Water
   - UI
-  - 
+  - car
   - 
   - 
   - 
