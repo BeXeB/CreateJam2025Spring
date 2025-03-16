@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 62e610d235116764bb308b79ae6a5fd9
+guid: 41ad32a31e480e142b6a0e459db49b03
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5602350071929895572
-    second: kuszas2_0
+      213: 4536570729799689407
+    second: plank_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,23 +113,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: kuszas2_0
+      name: plank_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 2000
-        height: 1000
+        y: 33
+        width: 1000
+        height: 961
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c650c37ca447042b0800000000000000
-      internalID: -5602350071929895572
+      spriteID: fb425200b0325fe30800000000000000
+      internalID: 4536570729799689407
       vertices: []
       indices: 
       edges: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: d8d616e7a33b5194f98211ad7a36bdad
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -147,8 +147,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      kuszas2_0: -5602350071929895572
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -15,7 +15,9 @@ public class PathFollower : MonoBehaviour
     {
         if (cooldown > 0) return;
         var goal = path[currentGoalIndex].position;
-        transform.position += (goal - transform.position).normalized * (speed * Time.fixedDeltaTime);
+        var direction = (goal - transform.position).normalized;
+        transform.up = direction;
+        transform.position += direction * (speed * Time.fixedDeltaTime);
         if (Vector3.Distance(transform.position, goal) < 0.1f)
         {
             cooldown = timeAtStop;

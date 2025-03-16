@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
     {
         if (player.GetComponent<PlayerMovement>().inWheelchair)
         {
-            var chairs = GameObject.FindObjectsByType<Wheelchair>(FindObjectsSortMode.None);
+            var chairs = FindObjectsByType<Wheelchair>(FindObjectsSortMode.None);
             foreach (var chair in chairs)
             {
                 if (!chair.GetComponentInParent<PlayerMovement>())
