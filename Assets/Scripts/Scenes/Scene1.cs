@@ -47,7 +47,7 @@ public class Scene1 : MonoBehaviour
             nurseDoor.SetActive(false);
             tutorial = false;
             nurseNPC.SetActive(true);
-            for (int i = 1; i < 4; i++)
+            for (int i = 0; i < 4; i++)
             {
                 InputManager.instance.playerInput.Dialogue.AdvanceDialogue.ChangeBinding(4).Erase();
             }

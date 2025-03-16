@@ -38,11 +38,10 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
-        var startLoc = GameObject.FindWithTag("Start")?.transform.position;
-        if (startLoc != null)
-        {
-            player.transform.position = (Vector3)startLoc;
-        }
+        var startLoc = GameObject.FindWithTag("Start")?.transform;
+        if (startLoc == null) return;
+        player.transform.rotation = startLoc.rotation;
+        player.transform.position = startLoc.position;
     }
 
     public void LoadNext()

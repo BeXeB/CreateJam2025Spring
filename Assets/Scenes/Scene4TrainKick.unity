@@ -2844,11 +2844,11 @@ MonoBehaviour:
     - name: 
       sentence: Since you lost your ramp, you were unable to get of the train by
         yourself, and no one helped you
-    - name: Kaller
+    - name: Inspector
       sentence: This is the last stop, you have to get of the train
     - name: Skipper
       sentence: ...
-    - name: Kaller
+    - name: Inspector
       sentence: Then I'll toss you off myself
 --- !u!1001 &1252537515
 PrefabInstance:

@@ -24,7 +24,7 @@ public class DialogueManager : MonoBehaviour
     public event Action OnDialogueStarted;
     private Dialogue currentDialogue;
     private int currentSentenceIndex;
-    private float cooldown = 0.1f;
+    private float cooldown = 1f;
     private float currentCooldown = 0;
 
     private void OnEnable()
