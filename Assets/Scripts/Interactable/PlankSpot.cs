@@ -1,16 +1,16 @@
+using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class PlankSpot : MonoBehaviour, IInteractable
 {
     [SerializeField] private GameObject plankSprite;
-    [SerializeField] private Transform plankSpot;
     [SerializeField] private GameObject barrier;
     private bool hasPlank = false;
     
     public void Interact(GameObject player)
     {
         var inventory = player.GetComponent<Inventory>();
+        OnInteracted?.Invoke();
         if (hasPlank)
         {
             inventory.AddItem(ItemType.Plank);
@@ -29,4 +29,6 @@ public class PlankSpot : MonoBehaviour, IInteractable
         hasPlank = true;
         inventory.RemoveItem(ItemType.Plank);
     }
+
+    public event Action OnInteracted;
 }

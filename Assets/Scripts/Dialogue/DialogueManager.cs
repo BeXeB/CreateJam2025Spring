@@ -24,6 +24,8 @@ public class DialogueManager : MonoBehaviour
     public event Action OnDialogueStarted;
     private Dialogue currentDialogue;
     private int currentSentenceIndex;
+    private float cooldown = 1f;
+    private float currentCooldown = 0;
 
     private void OnEnable()
     {
@@ -54,7 +56,13 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
+        if (currentCooldown > 0)
+        {
+            return;
+        }
+
         currentSentenceIndex++;
+        currentCooldown = cooldown;
         if (currentSentenceIndex < currentDialogue.sentences.Length)
         {
             var currentSentence = currentDialogue.sentences[currentSentenceIndex];
@@ -63,6 +71,11 @@ public class DialogueManager : MonoBehaviour
         }
 
         EndDialogue();
+    }
+
+    private void Update()
+    {
+        currentCooldown -= Time.deltaTime;
     }
 
     private void ChangeDialogue(string name, string dialogue)

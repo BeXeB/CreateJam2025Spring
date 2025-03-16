@@ -6,9 +6,22 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private GameObject menuObject;
     [SerializeField] private GameObject volumeObject;
 
+    private void Awake()
+    {
+        InputManager.instance.playerInput.Disable();
+        GameManager.instance.player.SetActive(false);
+    }
+
     public void Play()
     {
-        SceneManager.LoadScene(1);
+        GameManager.instance.player.SetActive(true);
+        InputManager.instance.playerInput.Enable();
+        SceneManager.LoadScene(2);
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
     }
 
     public void VolumeMenu()

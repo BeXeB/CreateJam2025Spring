@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float rotationSpeed = 100f;
     [SerializeField] private float outOfChairSpeedMultiplier = 0.2f;
     [SerializeField] private float outOfChairRotationMultiplier = 0.5f;
+    [SerializeField] private Animator animator;
     
     private PlayerInput playerInput;
     private float currentSpeed = 0f;
@@ -54,6 +55,12 @@ public class PlayerMovement : MonoBehaviour
         HandleMovement();
         HandleRotation();
     }
+
+    public void SetInWheelChair(bool value)
+    {
+        inWheelchair = value;
+        animator.SetBool("InChair", value);
+    }
     
     private void HandleMovement()
     {
@@ -86,6 +93,7 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             currentSpeed = (_shouldGoForward ? maxSpeed * outOfChairSpeedMultiplier : _shouldGoBackward ? -maxSpeed * outOfChairSpeedMultiplier : 0);
+            animator.SetBool("Moving", currentSpeed > 0f);
         }
         
         transform.position += transform.up * (currentSpeed * Time.fixedDeltaTime);
@@ -107,11 +115,28 @@ public class PlayerMovement : MonoBehaviour
 
     private void GetOutOfChair(InputAction.CallbackContext obj)
     {
-        if (!inWheelchair) return;
-        
-        inWheelchair = false;
+        GetOutOfChairImplementation();
+    }
+
+    public void GetOutOfChairImplementation()
+    {
+        if (!inWheelchair)
+        {
+            return;
+        }
+
+        transform.position = wheelchair.ejectPos.position;
+        SetInWheelChair(false);
+        wheelchair.GetComponent<BoxCollider2D>().enabled = true;
         wheelchair.transform.SetParent(null);
         wheelchair = null;
+    }
+
+    public void GetOutOfChairImplementationWithDelete()
+    {
+        var go = wheelchair.gameObject;
+        GetOutOfChairImplementation();
+        Destroy(go);
     }
     
     private void ReloadScene(InputAction.CallbackContext obj)
@@ -124,6 +149,19 @@ public class PlayerMovement : MonoBehaviour
         if (other.CompareTag("End"))
         {
             GameManager.instance.LoadNext();
+        }
+
+        if (other.CompareTag("DialogueTrigger"))
+        {
+            other.GetComponent<DialogueTrigger>().PlayDialogue();
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.collider.CompareTag("Car"))
+        {
+            GameManager.instance.GameOver();
         }
     }
 }

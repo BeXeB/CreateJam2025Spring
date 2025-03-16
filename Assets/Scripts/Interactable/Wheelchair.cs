@@ -1,15 +1,20 @@
+using System;
 using UnityEngine;
 
 public class Wheelchair : MonoBehaviour, IInteractable
 {
-    [SerializeField] private Transform ejectPos;
+    [SerializeField] public Transform ejectPos;
     public void Interact(GameObject player)
     {
-        player.transform.position = ejectPos.position;
+        OnInteracted?.Invoke();
+        player.transform.position = transform.position;
         player.transform.rotation = transform.rotation;
         gameObject.transform.SetParent(player.transform);
         var playerMovement = player.GetComponent<PlayerMovement>();
-        playerMovement.inWheelchair = true;
+        playerMovement.SetInWheelChair(true);
+        GetComponent<BoxCollider2D>().enabled = false;
         playerMovement.wheelchair = this;
     }
+
+    public event Action OnInteracted;
 }

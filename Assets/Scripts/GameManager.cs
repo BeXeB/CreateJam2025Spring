@@ -1,6 +1,3 @@
-using System;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -32,7 +29,7 @@ public class GameManager : MonoBehaviour
     {
         if (player.GetComponent<PlayerMovement>().inWheelchair)
         {
-            var chairs = GameObject.FindObjectsByType<Wheelchair>(FindObjectsSortMode.None);
+            var chairs = FindObjectsByType<Wheelchair>(FindObjectsSortMode.None);
             foreach (var chair in chairs)
             {
                 if (!chair.GetComponentInParent<PlayerMovement>())
@@ -41,11 +38,10 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
-        var startLoc = GameObject.FindWithTag("Start")?.transform.position;
-        if (startLoc != null)
-        {
-            player.transform.position = (Vector3)startLoc;
-        }
+        var startLoc = GameObject.FindWithTag("Start")?.transform;
+        if (startLoc == null) return;
+        player.transform.rotation = startLoc.rotation;
+        player.transform.position = startLoc.position;
     }
 
     public void LoadNext()
@@ -59,7 +55,7 @@ public class GameManager : MonoBehaviour
                 {
                     new ()
                     {
-                        name = "$*#!@%$!",
+                        name = "System",
                         sentence = "Please come back with your wheelchair"
                     }
                 }
@@ -76,6 +72,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        player.SetActive(false);
         dedMenu.GameOver();
     }
 
@@ -88,17 +85,29 @@ public class GameManager : MonoBehaviour
     {
         player.GetComponent<Inventory>().SetInventory(new());
         var pm = player.GetComponent<PlayerMovement>();
-        if (!pm.inWheelchair)
+        if (SceneManager.GetActiveScene().buildIndex != 2)
         {
-            var wheelChair = GameObject.Find("Wheelchair");
-            wheelChair.GetComponent<Wheelchair>().Interact(player);
+            if (!pm.inWheelchair)
+            {
+                var wheelChair = GameObject.Find("Wheelchair");
+                wheelChair.GetComponent<Wheelchair>().Interact(player);
+            }
         }
+        else
+        {
+            if (pm.inWheelchair)
+            {
+                pm.GetOutOfChairImplementation();
+                Destroy(GameObject.Find("Wheelchair"));
+            }
+        }
+        
+        player.SetActive(true);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void Menu()
     {
-        Destroy(player);
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 }
